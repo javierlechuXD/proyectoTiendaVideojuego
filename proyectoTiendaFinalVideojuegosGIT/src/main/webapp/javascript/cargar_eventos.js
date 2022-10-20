@@ -1,21 +1,21 @@
 function cargarEventos(){
 	//con jquery digo que va a pasar cuando se haga click en un enlace
 	$("#listVideojuegos").click(function(){
-		$.get("ServicioWebVideojuegos/obtenerVideojuegos", function(res){
-			var videojuegos = JSON.parse(res);
-			var resultado = Mustache.render(plantillas.videojuegos, videojuegos);
-			$("#contenedor").html(resultado);
-			$(".enlace_detalles").click(function(e){
-				//this -> es el elemento sobre el que se hizo click en este caso
-				//$(this) es obtener el mismo elemento en forma de jquery
-				var id = $(this).attr("id_producto");
-				alert("mostrar detalles del libro de id: " + id);
-				//ahora lo suyo es llamar a obter libro por id y mostrar
-				//en una plantilal el resultado obtenido
-			});
-		});
+		mostrar_productos();
 	});
 	
+	
+	$("#carrito").click(function(){
+		$("#contenedor").html(plantillas.carrito);
+	});
+	
+	$("#login").click(function(){
+		$("#contenedor").html(plantillas.login);
+		$("#form_login").submit(function(e){
+			e.preventDefault();
+			identificar_usuario();
+		});
+	});
 	$("#registrarme").click(function(){
 		$("#contenedor").html(plantillas.registrarme);
 		$("#form_registro_usuario").submit(function(e){
@@ -24,11 +24,13 @@ function cargarEventos(){
 			e.preventDefault();//se cancela el envio de form de forma tradicional
 			var nombre = $("#nombre").val();
 			var apellido = $("#apellido").val();
+			var email = $("#email").val();
+			var pass = $("#pass").val();
 			var tel = $("#tel").val();
 			var ciudad = $("#ciudad").val();
 			var cp = $("#cp").val();
 			//ahora se deberian validar los campos
-			var usuario = {nombre: nombre, apellido: apellido, tel: tel, ciudad: ciudad, cp: cp};
+			var usuario = {nombre: nombre, apellido: apellido, email: email, pass: pass, tel: tel, ciudad: ciudad, cp: cp};
 			console.log(usuario);
 			var json = JSON.stringify(usuario);//transformar a string un json del 
 											  //objeto usuario
@@ -49,5 +51,7 @@ function cargarEventos(){
 			});//end ajax						
 		});//end submit
 	});//end click
-
+	$("#logout").click(function(e){
+		logout();		
+	});
 }//cargar eventos

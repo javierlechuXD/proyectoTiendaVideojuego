@@ -55,7 +55,8 @@ function comprobarPlantillas(){
 		}
 	}//end for
 	if( listo ){
-		$("#contenedor").html("");
+		//$("#contenedor").html("");
+		mostrar_productos();
 		cargarEventos();
 		//parar el interval, para que deje de ejecutar comprobarPlantillas cada seg
 		clearInterval(intervalo);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,19 @@ public class ServicioUsuariosImpl implements ServicioUsuarios {
 	public void guardarCambiosUsuario(Usuario usuario) {
 		sessionFactory.getCurrentSession().merge(usuario);
 		
+	}
+	
+	@Override
+	public Usuario obtenerUsuarioPorEmailYPass(String email, String pass) {
+		Criteria c = 
+				sessionFactory.getCurrentSession().createCriteria(Usuario.class);
+		c.add(Restrictions.eq("email", email));
+		c.add(Restrictions.eq("pass", pass));
+		Usuario u = null;
+		if(c.uniqueResult()!=null) {
+			u = (Usuario)c.uniqueResult();
+		}
+		return u;
 	}
 	
 }

@@ -15,6 +15,8 @@ public class Usuario {
 	
 	private String nombre;
 	private String apellido;
+	private String email;
+	private String pass;
 	private String tel;
 	private String ciudad;
 	private int cp;
@@ -24,18 +26,19 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 
-	public Usuario(int id, String nombre, String apellido, String tel, String ciudad, int cp) {
+	public Usuario(int id, String nombre, String apellido, String email, String pass, String tel, String ciudad,
+			int cp) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.email = email;
+		this.pass = pass;
 		this.tel = tel;
 		this.ciudad = ciudad;
 		this.cp = cp;
 	}
-
 
 
 	public int getId() {
@@ -97,12 +100,41 @@ public class Usuario {
 		this.cp = cp;
 	}
 
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPass() {
+		return pass;
+	}
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", tel=" + tel + ", ciudad="
-				+ ciudad + ", cp=" + cp + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", pass="
+				+ pass + ", tel=" + tel + ", ciudad=" + ciudad + ", cp=" + cp + "]";
 	}
+
+
+
+
+
+
+
 
 
 
