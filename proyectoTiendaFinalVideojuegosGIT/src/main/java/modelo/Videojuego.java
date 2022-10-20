@@ -1,8 +1,10 @@
 package modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -18,9 +20,16 @@ public class Videojuego {
 	private String nombre;
 	private String descri;
 	private int edadmin;
-	private double precio;
+	private double precio;	
 	private String desarrollador;
 	private int notaCritica;
+	
+	
+	@ManyToOne(targetEntity = Categoria.class, optional = false, fetch = FetchType.EAGER)
+	private Categoria categoria;
+	
+	@Transient
+	private int idCategoria;
 	
 	@Transient // el siguiente campo es ignorado por hibernate
 	private MultipartFile portada;
@@ -123,6 +132,22 @@ public class Videojuego {
 
 	public void setPortada2(MultipartFile portada2) {
 		this.portada2 = portada2;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import modelo.Categoria;
 import modelo.Videojuego;
 import servicios.ServicioVideojuegos;
 
@@ -25,6 +26,8 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 
 	@Override
 	public void registrarVideojuego(Videojuego videojuegoRegistrar) {
+		Categoria c = (Categoria)sessionFactory.getCurrentSession().get(Categoria.class, videojuegoRegistrar.getIdCategoria());
+		videojuegoRegistrar.setCategoria(c);;
 		sessionFactory.getCurrentSession().save(videojuegoRegistrar);
 		
 	}

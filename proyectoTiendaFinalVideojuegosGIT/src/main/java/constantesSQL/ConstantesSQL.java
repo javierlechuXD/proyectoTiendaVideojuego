@@ -19,6 +19,8 @@ public class ConstantesSQL {
 	public static final String SQL_GUARDAR_CAMBIOS_USUARIO = "UPDATE `usuarios` SET `nombre` = ?, `apellido` = ?, `tel` = ?, `ciudad` = ?, `cp` = ? WHERE `usuarios`.`id` = ?";
 	
 	public static final String SQL_GUARDAR_CAMBIOS_VIDEOJUEGO = "UPDATE `videojuegos` SET `nombre` = ?, `descri` = ?, `edadmin` = ?, `precio` = ?, `desarrollador` = ?, `notaCritica` = ? WHERE `videojuegos`.`id` = ?";
+	
+	public final static String SQL_OBTENER_CATEGORIAS_PARA_DESPLEGABLE = "select id, nombre from tabla_categorias order by nombre asc"; 
 
 
 }

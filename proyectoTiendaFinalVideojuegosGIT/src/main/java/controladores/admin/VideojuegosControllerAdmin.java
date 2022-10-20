@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import modelo.Usuario;
 import modelo.Videojuego;
+import servicios.ServicioCategorias;
 import servicios.ServicioVideojuegos;
 import utilidadesArchivos.GestorArchivos;
 
@@ -20,6 +21,8 @@ import utilidadesArchivos.GestorArchivos;
 public class VideojuegosControllerAdmin {
 	@Autowired
 	private ServicioVideojuegos servicioVideojuegos;
+	@Autowired 
+	ServicioCategorias servicioCategorias;
 	
 	@RequestMapping("videojuegos")
 	public String videojuegos() {
@@ -29,7 +32,7 @@ public class VideojuegosControllerAdmin {
 	
 	@RequestMapping("gestionarVideojuegos")
 	public String gestionarVideojuegos(Model model) {
-		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos());		
+		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos());	
 		return "admin/gestionarVideojuegos";
 	}
 	
@@ -46,6 +49,7 @@ public class VideojuegosControllerAdmin {
 		v.setEdadmin(13);
 		v.setNotaCritica(5);
 		model.addAttribute("videojuego", v);
+		model.addAttribute("categorias",servicioCategorias.obtenerCategoriasParaDesplegable());
 		
 		return "admin/formRegistrarVideojuego";
 	}

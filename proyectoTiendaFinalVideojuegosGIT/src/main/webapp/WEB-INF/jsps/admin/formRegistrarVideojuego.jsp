@@ -18,6 +18,9 @@ Edad Mínima: <springform:input path="edadmin"/> <br>
 Precio: <springform:input path="precio"/> <br>
 Desarrollador: <springform:input path="desarrollador"/> <br>
 Nota Crítica: <springform:input path="notaCritica"/> <br>
+Categoría: <springform:select path="idCategoria">
+				<springform:options items="${categorias}"></springform:options>
+			</springform:select><br>
 Portada: <springform:input path="portada" type="file"/> <br>
 Portada2: <springform:input path="portada2" type="file"/> <br>
 <input type="submit" value="REGISTRARME"/> <br>
