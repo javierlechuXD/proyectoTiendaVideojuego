@@ -4,6 +4,11 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+	input[type=numer]{
+		width: 3rem;
+	}
+</style>
 <body>
 
 Bienvenido a mi tienda Online <span style="color: blue" id="inicio_span_nombre_usuario">(usuario no identificado)</span>
@@ -13,7 +18,7 @@ Bienvenido a mi tienda Online <span style="color: blue" id="inicio_span_nombre_u
 	<a href="#" id="carrito">carrito</a> &nbsp;&nbsp;&nbsp;
 	<a href="#" id="registrarme">registrarme</a>&nbsp;&nbsp;&nbsp;
 	<a href="#" id="login">identificarme</a>&nbsp;&nbsp;&nbsp;
-	<a href="#" id="logout">Cerrar Sesión</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" style="display: none" id="logout">SALIR</a> &nbsp;&nbsp;&nbsp;
 	
 </div>
 <div id="contenedor">

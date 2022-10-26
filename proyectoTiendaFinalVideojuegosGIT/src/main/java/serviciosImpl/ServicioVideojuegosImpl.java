@@ -27,7 +27,7 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	@Override
 	public void registrarVideojuego(Videojuego videojuegoRegistrar) {
 		Categoria c = (Categoria)sessionFactory.getCurrentSession().get(Categoria.class, videojuegoRegistrar.getIdCategoria());
-		videojuegoRegistrar.setCategoria(c);;
+		videojuegoRegistrar.setCategoria(c);
 		sessionFactory.getCurrentSession().save(videojuegoRegistrar);
 		
 	}
@@ -47,6 +47,8 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 
 	@Override
 	public void guardarCambiosVideojuego(Videojuego videojuego) {
+		Categoria c = (Categoria)sessionFactory.getCurrentSession().get(Categoria.class, videojuego.getIdCategoria());
+		videojuego.setCategoria(c);
 		sessionFactory.getCurrentSession().merge(videojuego);
 		
 	}

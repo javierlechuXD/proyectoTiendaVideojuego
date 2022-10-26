@@ -3,6 +3,7 @@ package modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +21,9 @@ public class Usuario {
 	private String tel;
 	private String ciudad;
 	private int cp;
+	
+	@OneToOne
+	private Carrito carrito;
 	
 	
 	public Usuario() {
@@ -120,6 +124,16 @@ public class Usuario {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	
+
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
 	}
 
 

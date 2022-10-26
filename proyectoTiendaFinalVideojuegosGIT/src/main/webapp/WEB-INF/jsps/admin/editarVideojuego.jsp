@@ -18,6 +18,9 @@ Edad Mínima: <springform:input path="edadmin"/> <br>
 Precio: <springform:input path="precio"/> <br>
 Desarrollador: <springform:input path="desarrollador"/> <br>
 Nota Crítica: <springform:input path="notaCritica"/> <br>
+Categoría: <springform:select path="idCategoria">
+				<springform:options items="${categorias}"></springform:options>
+			</springform:select><br>
 <input onclick="return confirm('¿Estás seguro que desa editar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" type="submit" value="EDITAR"/> <br>
 
 </springform:form>

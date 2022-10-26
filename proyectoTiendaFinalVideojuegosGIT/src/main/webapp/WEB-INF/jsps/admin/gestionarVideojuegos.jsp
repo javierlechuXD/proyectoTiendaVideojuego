@@ -19,7 +19,7 @@
 		<img style="height: 160px" src="../subidas/${videojuego.id}.jpg"/>
 		<img style="height: 160px" src="../subidas/${videojuego.id}-2.jpg"/>
 		<br>
-		Videojuego: ${videojuego.nombre} | Descripción: ${videojuego.descri} | Edad Mínima: +${videojuego.edadmin} años | Vategoría: ${videojuego.categoria.nombre} | Precio: ${videojuego.precio}€ | Desarrollador: ${videojuego.desarrollador} | Nota Crítica: ${videojuego.notaCritica}
+		Videojuego: ${videojuego.nombre} | Descripción: ${videojuego.descri} | Edad Mínima: +${videojuego.edadmin} años | Categoría: ${videojuego.categoria.nombre} | Precio: ${videojuego.precio}€ | Desarrollador: ${videojuego.desarrollador} | Nota Crítica: ${videojuego.notaCritica}
 		<a onclick="return confirm('¿Estás seguro que desa borrar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" href="borrarVideojuego?idVideojuego=${videojuego.id}"> Borrar</a>
 		 | 
 		<a href=editarVideojuego?idVideojuego=${videojuego.id}> Editar</a>

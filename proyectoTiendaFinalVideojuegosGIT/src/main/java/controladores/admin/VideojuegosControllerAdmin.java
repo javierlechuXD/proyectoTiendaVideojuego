@@ -57,6 +57,7 @@ public class VideojuegosControllerAdmin {
 	@RequestMapping("editarVideojuego")
 	public String editarVideojuegoAdmin(@RequestParam String idVideojuego, Model model) {
 		model.addAttribute("videojuego", servicioVideojuegos.obtenerVideojuegoPorId(Integer.parseInt(idVideojuego)));
+		model.addAttribute("categorias", servicioCategorias.obtenerCategoriasParaDesplegable());
 		return "admin/editarVideojuego";
 	}
 	

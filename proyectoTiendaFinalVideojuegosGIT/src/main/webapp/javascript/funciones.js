@@ -16,10 +16,12 @@ function comprar_producto(){
 		alert("debes identificarte para poder comprar productos");
 	}else{
 		var id = $(this).attr("id_producto");
+		var cantidadS = $("#input-cantidad-"+id).val();
 
 		$.post("ServicioWebCarrito/agregarVideojuego",
 			{
-				idProducto: id
+				idProducto: id,
+				cantidad: cantidadS
 			}
 		).done(function(res){
 			alert(res);
