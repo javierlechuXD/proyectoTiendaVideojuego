@@ -60,6 +60,20 @@ public class Videojuego {
 		this.desarrollador = desarrollador;
 		this.notaCritica = notaCritica;
 	}
+	
+	
+
+	public Videojuego(String nombre, String descri, int edadmin, double precio, String desarrollador, int notaCritica,
+			Categoria categoria) {
+		super();
+		this.nombre = nombre;
+		this.descri = descri;
+		this.edadmin = edadmin;
+		this.precio = precio;
+		this.desarrollador = desarrollador;
+		this.notaCritica = notaCritica;
+		this.categoria = categoria;
+	}
 
 	public int getId() {
 		return id;

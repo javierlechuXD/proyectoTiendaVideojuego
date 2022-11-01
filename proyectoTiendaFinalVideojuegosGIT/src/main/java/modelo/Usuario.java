@@ -43,6 +43,19 @@ public class Usuario {
 		this.ciudad = ciudad;
 		this.cp = cp;
 	}
+	
+
+
+	public Usuario(String nombre, String apellido, String email, String pass, String tel, String ciudad, int cp) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.pass = pass;
+		this.tel = tel;
+		this.ciudad = ciudad;
+		this.cp = cp;
+	}
 
 
 	public int getId() {

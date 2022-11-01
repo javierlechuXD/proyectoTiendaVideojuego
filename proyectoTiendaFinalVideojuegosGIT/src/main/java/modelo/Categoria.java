@@ -19,6 +19,16 @@ public class Categoria {
 	@GeneratedValue
 	private int id;
 
+	public Categoria() {
+
+	}
+
+	public Categoria(String nombre, String descreipcion) {
+		super();
+		this.nombre = nombre;
+		this.descreipcion = descreipcion;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
