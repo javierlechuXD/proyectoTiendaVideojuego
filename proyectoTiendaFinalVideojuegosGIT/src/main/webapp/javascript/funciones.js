@@ -15,27 +15,23 @@ $.get("ServicioWebVideojuegos/obtenerVideojuegos", function(res){
 function mostrar_productos_carrito(){
 
 	if(nombre_login == ""){
-		alert("Debes identificarte para acceder a tu carrito");
+		alert("debes identificarte para acceder a tu carrito");
 		return;
 	}
 
-	$.getJSON("ServicioWebCarrito/obtenerProdcutosCarrito", function(res){
-
-		$("#contenedor").html(Mustache.render(plantillas.carrito,res));
-		$(".enlace_borrar_prodcuto").click(function(){
-			alert("borrar producto del carrito, por hacer");
-		});
-
+	$.getJSON("ServicioWebCarrito/obtenerProdcutosCarrito",function(res){
+		$("#contenedor").html( Mustache.render(plantillas.carrito,res) );
 		$(".input_cantidad").change(function(){
-			alert("mandar al servidor nueva cantidad, por hacer");
+			alert("mandar al servidor la nueva cantidad, por hacer...");
 		});
-
-
-
+		$(".enlace_borrar_producto").click(function(){
+			alert("borrar producto del carrito, por hacer...");
+		});
 		$("#realizar_pedido").click(function(){
-			alert("realizar el pedido checkout paso 0, por hacer");
+			checkout_paso_1();
 		});
 	});
+
 }
 
 function comprar_producto(){
