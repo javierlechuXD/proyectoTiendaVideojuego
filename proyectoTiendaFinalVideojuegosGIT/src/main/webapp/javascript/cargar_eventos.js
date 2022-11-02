@@ -1,4 +1,4 @@
-function cargarEventos(){
+	function cargarEventos(){
 	//con jquery digo que va a pasar cuando se haga click en un enlace
 	$("#listVideojuegos").click(function(){
 		mostrar_productos();
@@ -6,7 +6,7 @@ function cargarEventos(){
 	
 	
 	$("#carrito").click(function(){
-		$("#contenedor").html(plantillas.carrito);
+		mostrar_productos_carrito();
 	});
 	
 	$("#login").click(function(){

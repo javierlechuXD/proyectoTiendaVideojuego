@@ -1,10 +1,16 @@
 package serviciosImpl;
 
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import constantesSQL.ConstantesSQL;
 import modelo.Carrito;
 import modelo.Videojuego;
 import modelo.ProductoCarrito;
@@ -49,5 +55,22 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 			sessionFactory.getCurrentSession().save(pc);
 		}
 		
+	}
+	
+	@Override
+	public List<Map<String, Object>> obtenerProductosCarrito(Usuario usuario) {
+		Usuario uBaseDeDatos = (Usuario)sessionFactory.getCurrentSession().get(Usuario.class, usuario.getId());
+
+		Carrito c = uBaseDeDatos.getCarrito();
+
+		List<Map<String, Object>> res = null;
+		if (c != null) {
+			SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(ConstantesSQL.SQL_OBTENER_PRODUCTOS_CARRITO);
+			query.setParameter("carrito_id", c.getId());
+
+			query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+			res = query.list();
+		}
+		return res;
 	}
 }

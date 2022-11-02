@@ -21,6 +21,8 @@ public class ConstantesSQL {
 	public static final String SQL_GUARDAR_CAMBIOS_VIDEOJUEGO = "UPDATE `videojuegos` SET `nombre` = ?, `descri` = ?, `edadmin` = ?, `precio` = ?, `desarrollador` = ?, `notaCritica` = ? WHERE `videojuegos`.`id` = ?";
 	
 	public final static String SQL_OBTENER_CATEGORIAS_PARA_DESPLEGABLE = "select id, nombre from tabla_categorias order by nombre asc"; 
+	
+	public final static String SQL_OBTENER_PRODUCTOS_CARRITO = "select videojuegos.id as videojuegos_id,  videojuegos.nombre, videojuegos.precio, productocarrito.cantidad from videojuegos, productocarrito where productocarrito.videojuego_id = videojuegos.id and productocarrito.carrito_id = :carrito_id ORDER by productocarrito.id asc"; 
 
 
 }
