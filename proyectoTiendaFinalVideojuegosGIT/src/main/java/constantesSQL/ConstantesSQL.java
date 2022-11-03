@@ -24,5 +24,6 @@ public class ConstantesSQL {
 	
 	public final static String SQL_OBTENER_PRODUCTOS_CARRITO = "select videojuegos.id as videojuegos_id,  videojuegos.nombre, videojuegos.precio, productocarrito.cantidad from videojuegos, productocarrito where productocarrito.videojuego_id = videojuegos.id and productocarrito.carrito_id = :carrito_id ORDER by productocarrito.id asc"; 
 
-
+	public final static String BORRAR_PRODUCTOS_CARRITO = "delete from productocarrito where carrito_id = :carrito_id"; 
+	
 }
