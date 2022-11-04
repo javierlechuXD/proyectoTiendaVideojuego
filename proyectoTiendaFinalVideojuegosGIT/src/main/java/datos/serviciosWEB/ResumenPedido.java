@@ -10,11 +10,16 @@ public class ResumenPedido {
 	private String nombreCompleto;
 	private String direccion;
 	private String provincia;
+	private String pais;
+	private String telefono;
 	
 	
 	// paso 2
 	private String titularTarjeta;
 	private String numeroTarjeta;
+	
+	// paso 3
+	private String observaciones;
 	
 	
 	
@@ -54,6 +59,28 @@ public class ResumenPedido {
 	public void setNumeroTarjeta(String numeroTarjeta) {
 		this.numeroTarjeta = numeroTarjeta;
 	}
+	public String getPais() {
+		return pais;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+	
+	
+
+	
 	
 	
 	

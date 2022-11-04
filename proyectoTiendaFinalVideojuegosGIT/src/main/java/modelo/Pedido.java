@@ -24,12 +24,17 @@ public class Pedido {
 	private String nombreCompleto;
 	private String direccion;
 	private String provincia;
+	private String pais;
+	private String telefono;
 
 	// Se piden en el paso 2:
 
 	private String titularTarjeta;
 	private String numeroTarjeta;
 
+	// Se piden en el paso 3:
+	private String observaciones;
+	
 	// La siguiente variable indica la situación en la que se encuentra el pedido:
 
 	private String estado;
@@ -110,5 +115,30 @@ public class Pedido {
 		this.id = id;
 	}
 
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	
 
 }

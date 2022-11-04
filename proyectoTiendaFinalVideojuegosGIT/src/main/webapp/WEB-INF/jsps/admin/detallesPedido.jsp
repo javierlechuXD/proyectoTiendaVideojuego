@@ -19,7 +19,9 @@
 	<br>
 	Titular Tarjeta: ${pedido.titularTarjeta}<br>
 	Número de Tarjeta: ${pedido.numeroTarjeta}<br>
-
+	<br>
+	Observaciones: ${pedido.observaciones}<br>
+	
 	<div style="text-align: center;">
 		Productos del Pedido
 	</div>

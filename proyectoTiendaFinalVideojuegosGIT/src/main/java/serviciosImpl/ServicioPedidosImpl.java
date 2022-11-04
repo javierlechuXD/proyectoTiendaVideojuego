@@ -31,7 +31,7 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 	private ServicioCarrito servicioCarrito;
 
 	@Override
-	public void procesarPaso1(String nombreCompleto, String direccion, String provincia, Usuario usuario) {
+	public void procesarPaso1(String nombreCompleto, String direccion, String provincia,String pais,String telefono,Usuario usuario) {
 
 		Pedido p = new Pedido();
 		p.setUsuario(usuario);
@@ -39,6 +39,8 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 		p.setNombreCompleto(nombreCompleto);
 		p.setDireccion(direccion);
 		p.setProvincia(provincia);
+		p.setPais(pais);
+		p.setTelefono(telefono);
 
 		sessionFactory.getCurrentSession().save(p);
 	}
@@ -52,6 +54,13 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 	}
 	
 	@Override
+	public void procesarPaso3(String observacion, Usuario usuario) {
+		Pedido p = obtenerPedidoActual(usuario);
+		p.setObservaciones(observacion);
+		sessionFactory.getCurrentSession().save(p);
+	}
+	
+	@Override
 	public ResumenPedido obtenerResumenDelPedido(Usuario usuario) {
 		ResumenPedido resumen = new ResumenPedido();
 		Pedido p = obtenerPedidoActual(usuario);
@@ -60,6 +69,9 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 		resumen.setProvincia(p.getProvincia());
 		resumen.setTitularTarjeta(p.getTitularTarjeta());
 		resumen.setNumeroTarjeta(p.getNumeroTarjeta());
+		resumen.setPais(p.getPais());
+		resumen.setTelefono(p.getTelefono());
+		resumen.setObservaciones(p.getObservaciones());
 
 		resumen.setVideojuegos(servicioCarrito.obtenerProductosCarrito(usuario));
 
@@ -77,7 +89,7 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 				ProductoPedido pp = new ProductoPedido();
 				pp.setCantidad(pc.getCantidad());
 				pp.setVideojuego(pc.getVideojuego());
-				p.getProductosPedido().add(pp);
+				//p.getProductosPedido().add(pp);
 				pp.setPedido(p);
 				sessionFactory.getCurrentSession().save(pp);
 			}
@@ -141,4 +153,6 @@ public class ServicioPedidosImpl implements ServicioPedidos {
 		}
 		return p;
 	}
+
+
 }
