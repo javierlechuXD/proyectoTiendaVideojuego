@@ -14,8 +14,9 @@ ZONA DE ADMINISTRACION
 
 <div>
 	<a href="gestionarUsuarios">Gestionar Usuarios</a> 
-	<a href="gestionarVideojuegos">gestionar videojuegos</a>
-	<a href="ServletLogOutAdmin">cerrar sesion</a>
+	<a href="gestionarVideojuegos">Gestionar Videojuegos</a>
+	<a href="ServletLogOutAdmin">Cerrar Sesion</a>
+	<a href="gestionarPedidos">Gestionar Pedidos</a>
 	
 </div>
 
