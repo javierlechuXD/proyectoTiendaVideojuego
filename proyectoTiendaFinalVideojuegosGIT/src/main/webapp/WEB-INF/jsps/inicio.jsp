@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +11,22 @@
 	}
 </style>
 <body>
+<div style="text-align: right; margin: 10px">
+	<a href="?lang=es" >Español</a>
+	<a href="?lang=en" >Ingles</a>
+	<a href="?lang=fr" >Frances</a>
+	<a href="?lang=de" >Aleman</a>
+	<a href="?lang=it" >Italiano</a>
+</div>
 
-Bienvenido a mi tienda Online <span style="color: blue" id="inicio_span_nombre_usuario">(usuario no identificado)</span>
+<spring:message code="inicio.bienvenida"/> <span style="color: blue" id="inicio_span_nombre_usuario"><spring:message code="inicio.noidentificado"/></span>
 
 <div>
-	<a href="#" id="listVideojuegos">Mostrar Videojuegos</a>&nbsp;&nbsp;&nbsp;
-	<a href="#" id="carrito">carrito</a> &nbsp;&nbsp;&nbsp;
-	<a href="#" id="registrarme">registrarme</a>&nbsp;&nbsp;&nbsp;
-	<a href="#" id="login">identificarme</a>&nbsp;&nbsp;&nbsp;
-	<a href="#" style="display: none" id="logout">SALIR</a> &nbsp;&nbsp;&nbsp;
+	<a href="#" id="listVideojuegos"><spring:message code="inicio.mvideojuegos"/></a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="carrito"><spring:message code="inicio.carrito"/></a> &nbsp;&nbsp;&nbsp;
+	<a href="#" id="registrarme"><spring:message code="inicio.registrarme"/></a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="login"><spring:message code="inicio.identificarme"/></a>&nbsp;&nbsp;&nbsp;
+	<a href="#" style="display: none" id="logout"><spring:message code="inicio.salir"/></a> &nbsp;&nbsp;&nbsp;
 	
 </div>
 <div id="contenedor">
