@@ -27,8 +27,15 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	
+		<!-- configurar interceptores -->
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/*"/>
+			<bean id="interceptorAdmin" class="interceptores.InterceptorAdmin"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 <!-- Tenemos que indicar lo sigueinte para que desde una vista podamos incluir archivos externos como por ejemplo
 	 archivos de JS o CSS -->
 	 <!-- La siquiente linea agrega funcionalidades para poder conseguir lo que anteriormente hemos comentado -->
