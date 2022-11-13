@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Liste der Videospiele</title>
+</head>
+<body>
+
+<div style="text-align: center;margin: 10%">
+
+<meta charset="UTF-8">
+Liste der Videospiele
+
+{{#.}}
+	<div>
+	<img style="height: 160px;" src="subidas/{{id}}.jpg"/>
+	<img style="height: 160px;" src="subidas/{{id}}-2.jpg"/> <br>
+		Titel: {{nombre}} <br>
+		Beschreibung: {{descri}} <br>
+		Mindestalter: {{edadmin}} <br>
+		Preis: {{precio}} <br>
+		Entwickler: {{desarrollador}} <br>
+		Kritische Anmerkung: {{notaCritica}} <br>
+		<a href="#" id_producto="{{id}}" class="enlace_detalles" >Siehe Einzelheiten</a><br>
+		<input type="number" id="input-cantidad-{{id}}" value="1"/>
+		<a href="#" id_producto="{{id}}" class="enlace_comprar" >Videospiel kaufen</a>
+		<hr>
+	</div>
+{{/.}}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div style="text-align: center;margin: 10%">
+
+<meta charset="UTF-8">
+Liste des jeux vidéo
+
+{{#.}}
+	<div>
+	<img style="height: 160px;" src="subidas/{{id}}.jpg"/>
+	<img style="height: 160px;" src="subidas/{{id}}-2.jpg"/> <br>
+		Titre: {{nombre}} <br>
+		La description: {{descri}} <br>
+		Âge minimum: {{edadmin}} <br>
+		Prix: {{precio}} <br>
+		Développeur: {{desarrollador}} <br>
+		Note critique: {{notaCritica}} <br>
+		<a href="#" id_producto="{{id}}" class="enlace_detalles" >Voir les détails</a><br>
+		<input type="number" id="input-cantidad-{{id}}" value="1"/>
+		<a href="#" id_producto="{{id}}" class="enlace_comprar" >Acheter un jeu vidéo</a>
+		<hr>
+	</div>
+{{/.}}
+</div>
+
+</body>
+</html>

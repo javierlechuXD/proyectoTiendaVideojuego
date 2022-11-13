@@ -23,6 +23,8 @@
 		<a onclick="return confirm('¿Estás seguro que desa borrar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" href="borrarVideojuego?idVideojuego=${videojuego.id}"> Borrar</a>
 		 | 
 		<a href=editarVideojuego?idVideojuego=${videojuego.id}> Editar</a>
+		
+		<a href="agregarIdioma?idVideojuego=${videojuego.id}" onclick="alert('mostrar formulario para registrar para el videojuego textos en otro idioma'); return false;">Agregar idioma</a>	
 	</div>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 </c:forEach>

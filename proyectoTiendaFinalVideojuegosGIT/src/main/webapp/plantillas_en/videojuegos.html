@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div style="text-align: center;margin: 10%">
+
+<meta charset="UTF-8">
+Listado de Videojuegos
+
+{{#.}}
+	<div>
+	<img style="height: 160px;" src="subidas/{{id}}.jpg"/>
+	<img style="height: 160px;" src="subidas/{{id}}-2.jpg"/> <br>
+		Title: {{nombre}} <br>
+		Description: {{descri}} <br>
+		Minimum age: {{edadmin}} <br>
+		Price: {{precio}} <br>
+		Developer: {{desarrollador}} <br>
+		Critical note: {{notaCritica}} <br>
+		<a href="#" id_producto="{{id}}" class="enlace_detalles" >See details</a><br>
+		<input type="number" id="input-cantidad-{{id}}" value="1"/>
+		<a href="#" id_producto="{{id}}" class="enlace_comprar" >Buy video game</a>
+		<hr>
+	</div>
+{{/.}}
+</div>
+
+</body>
+</html>
