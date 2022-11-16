@@ -21,8 +21,13 @@
 
 <div style="text-align: center;">
 	Paginación: <br>
-	<a href="gestionarVideojuegos?comienzo=${siguiente - 20}">Atras</a>
-	<a href="gestionarVideojuegos?comienzo=${siguiente}">Siguiente</a>
+	Total Videojuegos: ${total} <br>
+	<c:if test ="${anterior >= 0}">
+		<a href="gestionarVideojuegos?comienzo=${anterior}&nombre=${nombre}">Anterior</a>
+	</c:if>
+	<c:if test ="${siguiente < total}">
+		<a href="gestionarVideojuegos?comienzo=${siguiente}&nombre=${nombre}">Siguiente</a>
+	</c:if>
 </div>
 
 <div style="text-align: center;">

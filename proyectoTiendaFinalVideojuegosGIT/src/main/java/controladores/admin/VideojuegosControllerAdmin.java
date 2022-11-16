@@ -40,7 +40,9 @@ public class VideojuegosControllerAdmin {
 		
 		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos(nombre, comienzo_int));	
 		model.addAttribute("siguiente", comienzo_int + Paginacion.RESULTADOS_POR_PAGINA);
-		model.addAttribute("numRegistros", servicioVideojuegos.numeroRegistrosVideojuegos());
+		model.addAttribute("nombre", nombre);
+		model.addAttribute("anterior", comienzo_int - Paginacion.RESULTADOS_POR_PAGINA);
+		model.addAttribute("total", servicioVideojuegos.obtenerTotalDeVideojuegos(nombre));
 		return "admin/gestionarVideojuegos";
 	}
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import constantes.Paginacion;
+import constantesSQL.ConstantesSQL;
 import modelo.Categoria;
 import modelo.Videojuego;
 import servicios.ServicioVideojuegos;
@@ -68,9 +70,10 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	}
 
 	@Override
-	public int numeroRegistrosVideojuegos() {
-		Query countQuery = sessionFactory.getCurrentSession().createSQLQuery("select count(*) from videojuegos");
-		return Integer.parseInt(countQuery.list().get(0).toString());
+	public int obtenerTotalDeVideojuegos(String nombre) {
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(ConstantesSQL.OBTENER_TOTAL_VIDEOJUEGOS);
+		query.setParameter("nombre", "%"+ nombre + "%");
+		return Integer.parseInt(query.list().get(0).toString());
 	}
 
 }

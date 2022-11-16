@@ -16,6 +16,6 @@ public interface ServicioVideojuegos {
 	
 	public void borrarVideojuego (int id);
 	
-	public int numeroRegistrosVideojuegos();
+	public int obtenerTotalDeVideojuegos(String nombre);
 	
 }
