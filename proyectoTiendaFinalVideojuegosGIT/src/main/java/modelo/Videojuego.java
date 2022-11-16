@@ -1,5 +1,10 @@
 package modelo;
 
+
+
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,6 +28,12 @@ public class Videojuego {
 	private double precio;	
 	private String desarrollador;
 	private int notaCritica;
+	
+	@Column(nullable = true)
+	private Date fechaImagenPortada1;
+	
+	@Column(nullable = true)
+	private Date fechaImagenPortada2;
 	
 	
 	@ManyToOne(targetEntity = Categoria.class, optional = false, fetch = FetchType.EAGER)
@@ -162,6 +173,24 @@ public class Videojuego {
 
 	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+	
+	
+
+	public Date getFechaImagenPortada1() {
+		return fechaImagenPortada1;
+	}
+
+	public void setFechaImagenPortada1(Date fechaImagenPortada1) {
+		this.fechaImagenPortada1 = fechaImagenPortada1;
+	}
+
+	public Date getFechaImagenPortada2() {
+		return fechaImagenPortada2;
+	}
+
+	public void setFechaImagenPortada2(Date fechaImagenPortada2) {
+		this.fechaImagenPortada2 = fechaImagenPortada2;
 	}
 
 	@Override

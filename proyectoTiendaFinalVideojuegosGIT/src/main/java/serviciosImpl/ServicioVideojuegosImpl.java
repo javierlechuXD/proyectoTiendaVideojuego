@@ -3,6 +3,7 @@ package serviciosImpl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import constantes.Paginacion;
 import modelo.Categoria;
 import modelo.Videojuego;
 import servicios.ServicioVideojuegos;
@@ -34,11 +36,13 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	}
 
 	@Override
-	public List<Videojuego> obtenerVideojuegos(String nombre) {
+	public List<Videojuego> obtenerVideojuegos(String nombre, int comienzo) {
 		System.out.println("nombre videojuego buscar: " + nombre);
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(Videojuego.class);
 		c.add(Restrictions.like("nombre", "%"+nombre+"%"));
 		c.addOrder(Order.desc("id"));
+		c.setFirstResult(comienzo);
+		c.setMaxResults(Paginacion.RESULTADOS_POR_PAGINA);
 		return c.list();
 	}
 
@@ -49,6 +53,7 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 
 	@Override
 	public void guardarCambiosVideojuego(Videojuego videojuego) {
+		System.out.println("Editando libro con id:" + videojuego.getId());
 		Categoria c = (Categoria)sessionFactory.getCurrentSession().get(Categoria.class, videojuego.getIdCategoria());
 		videojuego.setCategoria(c);
 		sessionFactory.getCurrentSession().merge(videojuego);
@@ -60,6 +65,12 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 		Videojuego v = (Videojuego)sessionFactory.getCurrentSession().get(Videojuego.class, id);
 		sessionFactory.getCurrentSession().delete(v);
 		
+	}
+
+	@Override
+	public int numeroRegistrosVideojuegos() {
+		Query countQuery = sessionFactory.getCurrentSession().createSQLQuery("select count(*) from videojuegos");
+		return Integer.parseInt(countQuery.list().get(0).toString());
 	}
 
 }

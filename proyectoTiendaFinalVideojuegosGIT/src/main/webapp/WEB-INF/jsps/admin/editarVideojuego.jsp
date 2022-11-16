@@ -10,7 +10,7 @@
 <br>
 Editar usuario:
 
-<springform:form modelAttribute="videojuego" action="guardarEdicionVideojuegoAdmin">
+<springform:form modelAttribute="videojuego" action="guardarEdicionVideojuegoAdmin" enctype="multipart/form-data">
 <springform:input type="hidden" path="id"/> <br>
 Nombre: <springform:input path="nombre"/> <br>
 Descripción: <springform:input path="descri"/> <br>
@@ -21,6 +21,8 @@ Nota Crítica: <springform:input path="notaCritica"/> <br>
 Categoría: <springform:select path="idCategoria">
 				<springform:options items="${categorias}"></springform:options>
 			</springform:select><br>
+Portada: <springform:input path="portada" type="file"/> <br>
+Portada2: <springform:input path="portada2" type="file"/> <br>
 <input onclick="return confirm('¿Estás seguro que desa editar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" type="submit" value="EDITAR"/> <br>
 
 </springform:form>

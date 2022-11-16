@@ -1,5 +1,7 @@
 package controladores.admin;
 
+
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import constantes.Paginacion;
 import modelo.Usuario;
 import modelo.Videojuego;
 import servicios.ServicioCategorias;
@@ -31,15 +34,20 @@ public class VideojuegosControllerAdmin {
 	}
 	
 	@RequestMapping("gestionarVideojuegos")
-	public String gestionarVideojuegos(Model model, @RequestParam(defaultValue = "") String nombre) {
-		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos(nombre));	
+	public String gestionarVideojuegos(Model model, @RequestParam(defaultValue = "") String nombre, @RequestParam(defaultValue = "0")String comienzo) {
+		int comienzo_int = Integer.parseInt(comienzo);
+		System.out.println("Mostrar resultados desde: " + comienzo_int);
+		
+		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos(nombre, comienzo_int));	
+		model.addAttribute("siguiente", comienzo_int + Paginacion.RESULTADOS_POR_PAGINA);
+		model.addAttribute("numRegistros", servicioVideojuegos.numeroRegistrosVideojuegos());
 		return "admin/gestionarVideojuegos";
 	}
 	
 	@RequestMapping("borrarVideojuego")
 	public String borrarVideojuego(@RequestParam String idVideojuego, Model model) {
 		servicioVideojuegos.borrarVideojuego(Integer.parseInt(idVideojuego));	
-		return gestionarVideojuegos(model, "");
+		return gestionarVideojuegos(model, "", "0");
 	}
 	
 	@RequestMapping("nuevoVideojuegoAdmin")
@@ -56,6 +64,7 @@ public class VideojuegosControllerAdmin {
 	
 	@RequestMapping("editarVideojuego")
 	public String editarVideojuegoAdmin(@RequestParam String idVideojuego, Model model) {
+		System.out.println("Libro a editar parámetro ID: " + idVideojuego);
 		model.addAttribute("videojuego", servicioVideojuegos.obtenerVideojuegoPorId(Integer.parseInt(idVideojuego)));
 		model.addAttribute("categorias", servicioCategorias.obtenerCategoriasParaDesplegable());
 		return "admin/editarVideojuego";
@@ -63,6 +72,12 @@ public class VideojuegosControllerAdmin {
 	
 	@RequestMapping("guardarNuevoVideojuegoAdmin")
 	public String guardarNuevoVideojuegoAdmin(Videojuego videojuego, Model model, HttpServletRequest request) {
+		if (videojuego.getPortada().getSize() != 0) {
+			videojuego.setFechaImagenPortada1(new Date());
+		}
+		if (videojuego.getPortada2().getSize() != 0) {
+			videojuego.setFechaImagenPortada2(new Date());
+		}
 		String nombrePortada = videojuego.getPortada().getOriginalFilename();
 		String nombrePortada2 = videojuego.getPortada().getOriginalFilename();
 		if (nombrePortada.endsWith(".jpg") && nombrePortada2.endsWith(".jpg")) {
@@ -74,18 +89,38 @@ public class VideojuegosControllerAdmin {
 				System.out.println("Fallo al guardar");
 			}
 
-			return gestionarVideojuegos(model, "");
+			return gestionarVideojuegos(model, "", "0");
 		}else {
 			System.out.println("Extensión de archivo no valida");
-			return gestionarVideojuegos(model, "");
+			return gestionarVideojuegos(model, "", "0");
 		}
 
 	}
 	
 	@RequestMapping("guardarEdicionVideojuegoAdmin")
-	public String guardarEdicionVideojuegoAdmin(Videojuego videojuego, Model model) {
-		servicioVideojuegos.guardarCambiosVideojuego(videojuego); 
-		return gestionarVideojuegos(model, "");
+	public String guardarEdicionVideojuegoAdmin(Videojuego videojuego, Model model, HttpServletRequest request) {
+		if (videojuego.getPortada().getSize() != 0) {
+			videojuego.setFechaImagenPortada1(new Date());
+		}
+		if (videojuego.getPortada2().getSize() != 0) {
+			videojuego.setFechaImagenPortada2(new Date());
+		}
+		String nombrePortada = videojuego.getPortada().getOriginalFilename();
+		String nombrePortada2 = videojuego.getPortada().getOriginalFilename();
+		if (nombrePortada.endsWith(".jpg") && nombrePortada2.endsWith(".jpg")) {
+			servicioVideojuegos.guardarCambiosVideojuego(videojuego); 
+			try {
+				String rutaRealDelProyecto = request.getServletContext().getRealPath("");
+				GestorArchivos.guardarPortadaVideojuego(videojuego, rutaRealDelProyecto);
+			} catch (Exception e) {
+				System.out.println("Fallo al guardar");
+			}
+		}else {
+			System.out.println("Extensión de archivo no valida");
+			return gestionarVideojuegos(model, "", "0");
+		}
+		
+		return gestionarVideojuegos(model, "", "0");
 	}
 
 }

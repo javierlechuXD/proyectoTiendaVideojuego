@@ -20,7 +20,7 @@ public class ServicioWebVideojuegos {
 	
 	@RequestMapping("ServicioWebVideojuegos/obtenerVideojuegos")
 	public ResponseEntity<String> obtenerVideojuegos(){
-		String respuesta = new Gson().toJson(servicioVideojuegos.obtenerVideojuegos(""));
+		String respuesta = new Gson().toJson(servicioVideojuegos.obtenerVideojuegos("",0));
 		
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}

@@ -19,12 +19,22 @@
 	</form>
 </div>
 
+<div style="text-align: center;">
+	Paginación: <br>
+	<a href="gestionarVideojuegos?comienzo=${siguiente - 20}">Atras</a>
+	<a href="gestionarVideojuegos?comienzo=${siguiente}">Siguiente</a>
+</div>
+
+<div style="text-align: center;">
+	Número de registros: ${numRegistros}
+</div>
+
 <c:forEach var="videojuego" items="${info}">
 	<div>
 		<%// con el $ en realidad sacamos del request la información que queramos %>
 		Portadas: <br>
-		<img style="height: 160px" src="../subidas/${videojuego.id}.jpg"/>
-		<img style="height: 160px" src="../subidas/${videojuego.id}-2.jpg"/>
+		<img style="height: 160px" src="../subidas/${videojuego.id}.jpg?token=${videojuego.fechaImagenPortada1}"/>
+		<img style="height: 160px" src="../subidas/${videojuego.id}-2.jpg?token=${videojuego.fechaImagenPortada2}"/>
 		<br>
 		Videojuego: ${videojuego.nombre} | Descripción: ${videojuego.descri} | Edad Mínima: +${videojuego.edadmin} años | Categoría: ${videojuego.categoria.nombre} | Precio: ${videojuego.precio}€ | Desarrollador: ${videojuego.desarrollador} | Nota Crítica: ${videojuego.notaCritica}
 		<a onclick="return confirm('¿Estás seguro que desa borrar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" href="borrarVideojuego?idVideojuego=${videojuego.id}"> Borrar</a>

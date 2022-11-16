@@ -45,6 +45,12 @@ public class ServicioSetUp implements InterfazSetUp {
 			sessionFactory.getCurrentSession().save(new Videojuego("Call Of Duty", "Un juego de enfrenteaminetos puros", 18, 49.45, "Activision", 3, aventura));
 			sessionFactory.getCurrentSession().save(new Videojuego("SCP", "Sobrevive para poder escapar", 18, 11.34, "NortWord", 3, terror));
 
+			
+			String titulo = "Call of Duty ";
+			for (int i = 0; i < 100; i++) {
+				String tituloGuardar = titulo + i;
+				sessionFactory.getCurrentSession().save(new Videojuego(tituloGuardar, "Un juego de historio pura", 13, 49.33, "Activision", 3, accion));
+			}
 			SetUp setUp = new SetUp();
 			setUp.setCompleto(true);
 			sessionFactory.getCurrentSession().save(setUp);
