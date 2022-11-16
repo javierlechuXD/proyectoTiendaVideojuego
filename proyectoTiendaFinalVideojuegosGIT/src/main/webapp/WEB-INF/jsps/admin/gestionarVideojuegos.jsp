@@ -12,6 +12,13 @@
 	<a href="nuevoVideojuegoAdmin">Registrar un Videojuego</a>
 </div>
 
+<div style="margin: 15px">
+	<form action="gestionarVideojuegos">
+		Nombre: <input type="text" name="nombre" value="${nombre}"/>
+		<input type="submit" value="BUSCAR"/>
+	</form>
+</div>
+
 <c:forEach var="videojuego" items="${info}">
 	<div>
 		<%// con el $ en realidad sacamos del request la información que queramos %>

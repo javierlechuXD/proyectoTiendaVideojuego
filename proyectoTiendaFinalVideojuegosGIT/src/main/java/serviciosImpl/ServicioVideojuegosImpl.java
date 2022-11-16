@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,11 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	}
 
 	@Override
-	public List<Videojuego> obtenerVideojuegos() {
-		
+	public List<Videojuego> obtenerVideojuegos(String nombre) {
+		System.out.println("nombre videojuego buscar: " + nombre);
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(Videojuego.class);
-		// c.add(Restrictions.like("nombre", "a%"));
+		c.add(Restrictions.like("nombre", "%"+nombre+"%"));
+		c.addOrder(Order.desc("id"));
 		return c.list();
 	}
 

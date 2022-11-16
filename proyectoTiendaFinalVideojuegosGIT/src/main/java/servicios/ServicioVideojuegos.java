@@ -8,7 +8,7 @@ public interface ServicioVideojuegos {
 	
 	public void registrarVideojuego(Videojuego videojuegoRegistrar);
 	
-	public List<Videojuego> obtenerVideojuegos();
+	public List<Videojuego> obtenerVideojuegos(String nombre);
 	
 	public Videojuego obtenerVideojuegoPorId(int idVideojuegoEditar);
 	

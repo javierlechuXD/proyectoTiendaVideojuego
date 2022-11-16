@@ -31,15 +31,15 @@ public class VideojuegosControllerAdmin {
 	}
 	
 	@RequestMapping("gestionarVideojuegos")
-	public String gestionarVideojuegos(Model model) {
-		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos());	
+	public String gestionarVideojuegos(Model model, @RequestParam(defaultValue = "") String nombre) {
+		model.addAttribute("info",servicioVideojuegos.obtenerVideojuegos(nombre));	
 		return "admin/gestionarVideojuegos";
 	}
 	
 	@RequestMapping("borrarVideojuego")
 	public String borrarVideojuego(@RequestParam String idVideojuego, Model model) {
 		servicioVideojuegos.borrarVideojuego(Integer.parseInt(idVideojuego));	
-		return gestionarVideojuegos(model);
+		return gestionarVideojuegos(model, "");
 	}
 	
 	@RequestMapping("nuevoVideojuegoAdmin")
@@ -74,10 +74,10 @@ public class VideojuegosControllerAdmin {
 				System.out.println("Fallo al guardar");
 			}
 
-			return gestionarVideojuegos(model);
+			return gestionarVideojuegos(model, "");
 		}else {
 			System.out.println("Extensión de archivo no valida");
-			return gestionarVideojuegos(model);
+			return gestionarVideojuegos(model, "");
 		}
 
 	}
@@ -85,7 +85,7 @@ public class VideojuegosControllerAdmin {
 	@RequestMapping("guardarEdicionVideojuegoAdmin")
 	public String guardarEdicionVideojuegoAdmin(Videojuego videojuego, Model model) {
 		servicioVideojuegos.guardarCambiosVideojuego(videojuego); 
-		return gestionarVideojuegos(model);
+		return gestionarVideojuegos(model, "");
 	}
 
 }
