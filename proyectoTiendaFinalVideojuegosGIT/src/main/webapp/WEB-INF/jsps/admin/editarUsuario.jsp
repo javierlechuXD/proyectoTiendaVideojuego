@@ -11,13 +11,15 @@
 <br>
 Editar usuario:
 
-<springform:form modelAttribute="usuario" action="guardarEdicionUsuarioAdmin">
+<springform:form modelAttribute="usuario" action="guardarEdicionUsuarioAdmin" enctype="multipart/form-data">
 <springform:input type="hidden" path="id"/> <br>
 Nombre usuario: <springform:input path="nombre"/> <br>
 Apellido: <springform:input path="apellido"/> <br>
 Teléfono: <springform:input path="tel"/> <br>
 Ciudad: <springform:input path="ciudad"/> <br>
 Código Postal: <springform:input path="cp"/> <br>
+<!-- AÑADIR CAMPO FOTO A MODELO COMO EN LIBRO -->
+Foto: <springform:input path="usuarioFoto" type="file"/> <br>
 <input onclick="return confirm('¿Estás seguro que desa editar el usuario ${usuario.nombre} con id ${usuario.id}?');" type="submit" value="EDITAR"/> <br>
 
 </springform:form>

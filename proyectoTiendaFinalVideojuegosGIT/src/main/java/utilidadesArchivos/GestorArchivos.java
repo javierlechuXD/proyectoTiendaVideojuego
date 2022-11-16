@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import modelo.Usuario;
 import modelo.Videojuego;
 
 public class GestorArchivos {
@@ -35,6 +37,29 @@ public class GestorArchivos {
 			}
 		}else {
 			System.out.println("Se ha subido un videojuego sin portada");
+		}
+	}
+
+	public static void guardarFotoUsuario(Usuario u, CommonsMultipartFile foto, String rutaRealDelProyecto) {
+		String nombreArchivo = "u" + u.getId() + ".jpg";
+		String rutaSubidas = rutaRealDelProyecto + "/subidas";
+		//si rutaSubidas no existe, crearla:
+		File fileRutaSubidas = new File(rutaSubidas);
+		if( ! fileRutaSubidas.exists() ) {
+			fileRutaSubidas.mkdirs();
+		}
+		//si existe el archivo subido
+		if(foto.getSize() > 0) {
+			try {
+				foto.transferTo(new File(rutaSubidas,nombreArchivo));
+				System.out.println("archivo movido a: " + rutaSubidas);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("no pude mover el archivo a la ruta de subidas");
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("se registró un usuario sin foto, no hay problema,"
+					+ "de momento la imagen es opcional");
 		}
 	}
 	

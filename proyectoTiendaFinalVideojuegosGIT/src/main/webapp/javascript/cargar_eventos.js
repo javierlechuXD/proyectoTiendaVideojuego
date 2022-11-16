@@ -22,33 +22,52 @@
 			//este codigo se ejecuta cuando se 
 			//pulsa el boton de submit del form 
 			e.preventDefault();//se cancela el envio de form de forma tradicional
-			var nombre = $("#nombre").val();
-			var apellido = $("#apellido").val();
-			var email = $("#email").val();
-			var pass = $("#pass").val();
-			var tel = $("#tel").val();
-			var ciudad = $("#ciudad").val();
-			var cp = $("#cp").val();
-			//ahora se deberian validar los campos
-			var usuario = {nombre: nombre, apellido: apellido, email: email, pass: pass, tel: tel, ciudad: ciudad, cp: cp};
-			console.log(usuario);
-			var json = JSON.stringify(usuario);//transformar a string un json del 
-											  //objeto usuario
-			alert("json a enviar: " + json);
-			$.ajax("ServicioWebUsuarios/registrarUsuario",{
+			
+			// Forma para mandar directamente toda l ainformación dle form que tenga o no
+			// uno o más input type file
+			// No podemos coger el elemento por JQUERY
+			let formulario = this;
+			let formData = new FormData(formulario);
+			
+			$.ajax("ServicioWebUsuarios/registrarUsuario", {
 				type: "POST",
-				data: "info="+json,
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
 				success: function(res){
-					if(res == "ok"){
-						alert("registro ok, ya puedes identificarte - por hacer..");
-						$("#nombre").val("");
-						$("#apellido").val("");
-						$("#tel").val("");
-						$("#ciudad").val("");
-						$("#cp").val("");
-					}
+					alert(res);
 				}
-			});//end ajax						
+			});
+			
+// FORMA POR AJAX			
+//			var nombre = $("#nombre").val();
+//			var apellido = $("#apellido").val();
+//			var email = $("#email").val();
+//			var pass = $("#pass").val();
+//			var tel = $("#tel").val();
+//			var ciudad = $("#ciudad").val();
+//			var cp = $("#cp").val();
+//			//ahora se deberian validar los campos
+//			var usuario = {nombre: nombre, apellido: apellido, email: email, pass: pass, tel: tel, ciudad: ciudad, cp: cp};
+//			console.log(usuario);
+//			var json = JSON.stringify(usuario);//transformar a string un json del 
+//											  //objeto usuario
+//			alert("json a enviar: " + json);
+//			$.ajax("ServicioWebUsuarios/registrarUsuario",{
+//				type: "POST",
+//				data: "info="+json,
+//				success: function(res){
+//					if(res == "ok"){
+//						alert("registro ok, ya puedes identificarte - por hacer..");
+//						$("#nombre").val("");
+//						$("#apellido").val("");
+//						$("#tel").val("");
+//						$("#ciudad").val("");
+//						$("#cp").val("");
+//					}
+//				}
+//			});//end ajax						
 		});//end submit
 	});//end click
 	$("#logout").click(function(e){
