@@ -1,14 +1,20 @@
 package controladores.admin;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import modelo.Usuario;
 import modelo.Videojuego;
 import servicios.ServicioUsuarios;
+import utilidadesArchivos.GestorArchivos;
 
 @Controller
 @RequestMapping("/admin/")
@@ -41,8 +47,24 @@ public class UsuariosControllerAdmin {
 	}
 	
 	@RequestMapping("guardarNuevoUsuarioAdmin")
-	public String guardarUsuarios(Usuario usuario, Model model) {
-		servicioUsuarios.registrarUsuario(usuario);	
+	public String guardarUsuarios(Usuario usuario, Model model, HttpServletRequest request) {
+		if (usuario.getFotoPerfil().getSize() != 0) {
+			usuario.setFechaImagenPerfil(new Date());
+		}
+		
+		String nombreFotoPerfil = usuario.getFotoPerfil().getOriginalFilename();
+		if (nombreFotoPerfil.endsWith(".jpg")) {
+			servicioUsuarios.registrarUsuario(usuario);
+			try {
+				String rutaRealDelProyecto = request.getServletContext().getRealPath("");
+				GestorArchivos.guardarFotoUsuario(usuario, (CommonsMultipartFile)usuario.getFotoPerfil(), rutaRealDelProyecto);
+			} catch (Exception e) {
+				System.out.println("Fallo al guardar");
+			}
+
+			return gestionarUsuarios(model);
+		}
+		
 		return gestionarUsuarios(model);
 	}
 	@RequestMapping("editarUsuario")
@@ -52,8 +74,24 @@ public class UsuariosControllerAdmin {
 	}
 	
 	@RequestMapping("guardarEdicionUsuarioAdmin")
-	public String guardarEdicionUsuarioAdmin(Usuario usuario, Model model) {
-		servicioUsuarios.guardarCambiosUsuario(usuario);
+	public String guardarEdicionUsuarioAdmin(Usuario usuario, Model model, HttpServletRequest request) {
+		if (usuario.getFotoPerfil().getSize() != 0) {
+			usuario.setFechaImagenPerfil(new Date());
+		}
+		
+		String nombreFotoPerfil = usuario.getFotoPerfil().getOriginalFilename();
+		if (nombreFotoPerfil.endsWith(".jpg")) {
+			servicioUsuarios.guardarCambiosUsuario(usuario);
+			try {
+				String rutaRealDelProyecto = request.getServletContext().getRealPath("");
+				GestorArchivos.guardarFotoUsuario(usuario, (CommonsMultipartFile)usuario.getFotoPerfil(), rutaRealDelProyecto);
+			} catch (Exception e) {
+				System.out.println("Fallo al guardar");
+			}
+
+			return gestionarUsuarios(model);
+		}
+		
 		return gestionarUsuarios(model);
 	}
 }

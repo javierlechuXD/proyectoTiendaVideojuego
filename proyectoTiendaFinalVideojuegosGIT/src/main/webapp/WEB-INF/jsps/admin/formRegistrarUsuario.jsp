@@ -9,15 +9,16 @@
 </head>
 <body>
 
-Introduce tus datos:
+Introduce sus datos:
 
-<springform:form modelAttribute="usuario" action="guardarNuevoUsuarioAdmin">
+<springform:form modelAttribute="usuario" action="guardarNuevoUsuarioAdmin" enctype="multipart/form-data">
 Nombre usuario: <springform:input path="nombre"/> <br>
 Apellido: <springform:input path="apellido"/> <br>
 Teléfono: <springform:input path="tel"/> <br>
 Ciudad: <springform:input path="ciudad"/> <br>
 Código Postal: <springform:input path="cp"/> <br>
-<input type="submit" value="REGISTRARME"/> <br>
+Foto Usuario: <springform:input path="fotoPerfil" type="file"/> <br>
+<input type="submit" value="REGISTRAR"/> <br>
 
 </springform:form>
 

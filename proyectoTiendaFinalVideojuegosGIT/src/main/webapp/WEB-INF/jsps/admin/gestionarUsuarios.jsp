@@ -25,6 +25,9 @@
 		<a href="editarUsuario?idUsuario=${usuario.id}"> Editar</a>
 		
 	</div>
+	<br>
+	<hr></hr>
+	<br>
 
 </c:forEach>
 

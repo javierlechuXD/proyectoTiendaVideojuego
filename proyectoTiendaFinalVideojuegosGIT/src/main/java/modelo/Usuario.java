@@ -1,10 +1,16 @@
 package modelo;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="usuarios")
@@ -21,6 +27,12 @@ public class Usuario {
 	private String tel;
 	private String ciudad;
 	private int cp;
+	
+	@Column(nullable = true)
+	private Date fechaImagenPerfil;
+	
+	@Transient // el siguiente campo es ignorado por hibernate
+	private MultipartFile fotoPerfil;
 	
 	@OneToOne
 	private Carrito carrito;
@@ -147,6 +159,26 @@ public class Usuario {
 
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
+	}
+
+
+	public Date getFechaImagenPerfil() {
+		return fechaImagenPerfil;
+	}
+
+
+	public void setFechaImagenPerfil(Date fechaImagenPerfil) {
+		this.fechaImagenPerfil = fechaImagenPerfil;
+	}
+
+
+	public MultipartFile getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+
+	public void setFotoPerfil(MultipartFile fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
 	}
 
 
