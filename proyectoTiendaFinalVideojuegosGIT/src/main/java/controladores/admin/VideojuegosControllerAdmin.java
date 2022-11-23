@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -73,30 +76,35 @@ public class VideojuegosControllerAdmin {
 	}
 	
 	@RequestMapping("guardarNuevoVideojuegoAdmin")
-	public String guardarNuevoVideojuegoAdmin(Videojuego videojuego, Model model, HttpServletRequest request) {
-		if (videojuego.getPortada().getSize() != 0) {
-			videojuego.setFechaImagenPortada1(new Date());
-		}
-		if (videojuego.getPortada2().getSize() != 0) {
-			videojuego.setFechaImagenPortada2(new Date());
-		}
-		String nombrePortada = videojuego.getPortada().getOriginalFilename();
-		String nombrePortada2 = videojuego.getPortada().getOriginalFilename();
-		if (nombrePortada.endsWith(".jpg") && nombrePortada2.endsWith(".jpg")) {
-			servicioVideojuegos.registrarVideojuego(videojuego);	
-			try {
-				String rutaRealDelProyecto = request.getServletContext().getRealPath("");
-				GestorArchivos.guardarPortadaVideojuego(videojuego, rutaRealDelProyecto);
-			} catch (Exception e) {
-				System.out.println("Fallo al guardar");
+	public String guardarNuevoVideojuegoAdmin(@ModelAttribute("videojuego") @Valid Videojuego videojuego, BindingResult br, Model model, HttpServletRequest request) {
+		if(! br.hasErrors()) {
+			if (videojuego.getPortada().getSize() != 0) {
+				videojuego.setFechaImagenPortada1(new Date());
 			}
+			if (videojuego.getPortada2().getSize() != 0) {
+				videojuego.setFechaImagenPortada2(new Date());
+			}
+			String nombrePortada = videojuego.getPortada().getOriginalFilename();
+			String nombrePortada2 = videojuego.getPortada().getOriginalFilename();
+			if (nombrePortada.endsWith(".jpg") && nombrePortada2.endsWith(".jpg")) {
+				servicioVideojuegos.registrarVideojuego(videojuego);	
+				try {
+					String rutaRealDelProyecto = request.getServletContext().getRealPath("");
+					GestorArchivos.guardarPortadaVideojuego(videojuego, rutaRealDelProyecto);
+				} catch (Exception e) {
+					System.out.println("Fallo al guardar");
+				}
 
-			return gestionarVideojuegos(model, "", "0");
+				return gestionarVideojuegos(model, "", "0");
+			}else {
+				System.out.println("Extensión de archivo no valida");
+				return gestionarVideojuegos(model, "", "0");
+			}
 		}else {
-			System.out.println("Extensión de archivo no valida");
-			return gestionarVideojuegos(model, "", "0");
+			model.addAttribute("videojuego", videojuego);
+			model.addAttribute("categorias",servicioCategorias.obtenerCategoriasParaDesplegable());
+			return "admin/formRegistrarVideojuego";
 		}
-
 	}
 	
 	@RequestMapping("guardarEdicionVideojuegoAdmin")

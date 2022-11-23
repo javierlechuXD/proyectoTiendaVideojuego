@@ -12,7 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -22,9 +29,22 @@ public class Videojuego {
 	@GeneratedValue
 	private int id;
 	
+	@NotEmpty(message = "Nombre no puede estar vacio")
+	@Size(min = 1, max = 40, message = "Nombre debe tener entre 1 y 40 caracterec")
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$", message = "Solo letras y números")
 	private String nombre;
+	
+	@NotEmpty(message = "Descripción no puede estar vacio")
+	@Size(min = 1, max = 2000, message = "Descripción debe tener entre 1 y 2000 caracterec")
+	@Pattern(regexp = "^[a-zA-Z ().,áéíóúÁÉÍÓÚñÑ0-9]{1,2000}$", message = "Solo letras, números, puntos, comas y paréntesis")
 	private String descri;
+	
+	
 	private int edadmin;
+	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,###.###")
+	@Min(value = 1, message = "El precio mímimo es de un euro")
+	@Max(value = 9999, message = "El precio máximo es de 9999")
 	private double precio;	
 	private String desarrollador;
 	private int notaCritica;
