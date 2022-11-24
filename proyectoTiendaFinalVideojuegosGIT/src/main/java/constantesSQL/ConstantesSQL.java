@@ -2,7 +2,7 @@ package constantesSQL;
 
 public class ConstantesSQL {
 
-	public final static String SQL_OBTENER_VIDEOJUEGOS = "select * from videojuegos;";
+	public final static String SQL_OBTENER_VIDEOJUEGOS = "select * from videojuegos where alta = 1;";
 	
 	public final static String SQL_OBTENER_USUARIOS = "select * from usuarios;";
 	
@@ -26,5 +26,5 @@ public class ConstantesSQL {
 
 	public final static String BORRAR_PRODUCTOS_CARRITO = "delete from productocarrito where carrito_id = :carrito_id"; 
 	
-	public final static String OBTENER_TOTAL_VIDEOJUEGOS = "select count(id) from videojuegos where nombre like :nombre";
+	public final static String OBTENER_TOTAL_VIDEOJUEGOS = "select count(id) from videojuegos where nombre like :nombre and alta = 1";
 }
