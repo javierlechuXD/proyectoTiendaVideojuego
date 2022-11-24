@@ -41,6 +41,7 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	public List<Videojuego> obtenerVideojuegos(String nombre, int comienzo) {
 		System.out.println("nombre videojuego buscar: " + nombre);
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(Videojuego.class);
+		c.add(Restrictions.eq("alta", true));
 		c.add(Restrictions.like("nombre", "%"+nombre+"%"));
 		c.addOrder(Order.desc("id"));
 		c.setFirstResult(comienzo);
@@ -58,6 +59,7 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 		System.out.println("Editando libro con id:" + videojuego.getId());
 		Categoria c = (Categoria)sessionFactory.getCurrentSession().get(Categoria.class, videojuego.getIdCategoria());
 		videojuego.setCategoria(c);
+		//Merge crea si no lo encuentra, mienstras que update solo actualiza 
 		sessionFactory.getCurrentSession().merge(videojuego);
 		
 	}
@@ -65,7 +67,9 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	@Override
 	public void borrarVideojuego(int id) {
 		Videojuego v = (Videojuego)sessionFactory.getCurrentSession().get(Videojuego.class, id);
+		v.setAlta(false);
 		sessionFactory.getCurrentSession().delete(v);
+		//sessionFactory.getCurrentSession().delete(l);
 		
 	}
 

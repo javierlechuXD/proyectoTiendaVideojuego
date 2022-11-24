@@ -16,7 +16,7 @@ public class Carrito {
 	@OneToOne
 	Usuario usuario;
 	
-	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "carrito")
 	private List<ProductoCarrito> productosCarrito = new ArrayList<ProductoCarrito>();
 	
 	@Id

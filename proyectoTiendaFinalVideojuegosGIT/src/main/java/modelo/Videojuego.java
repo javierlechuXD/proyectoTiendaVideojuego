@@ -29,9 +29,9 @@ public class Videojuego {
 	@GeneratedValue
 	private int id;
 	
-	@NotEmpty(message = "Nombre no puede estar vacio")
-	@Size(min = 1, max = 40, message = "Nombre debe tener entre 1 y 40 caracterec")
-	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$", message = "Solo letras y números")
+	@NotEmpty
+	@Size(min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String nombre;
 	
 	@NotEmpty(message = "Descripción no puede estar vacio")
@@ -39,7 +39,7 @@ public class Videojuego {
 	@Pattern(regexp = "^[a-zA-Z ().,áéíóúÁÉÍÓÚñÑ0-9]{1,2000}$", message = "Solo letras, números, puntos, comas y paréntesis")
 	private String descri;
 	
-	
+	private boolean alta;
 	private int edadmin;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,###.###")
@@ -195,8 +195,6 @@ public class Videojuego {
 		this.idCategoria = idCategoria;
 	}
 	
-	
-
 	public Date getFechaImagenPortada1() {
 		return fechaImagenPortada1;
 	}
@@ -211,6 +209,14 @@ public class Videojuego {
 
 	public void setFechaImagenPortada2(Date fechaImagenPortada2) {
 		this.fechaImagenPortada2 = fechaImagenPortada2;
+	}
+
+	public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
 	}
 
 	@Override
