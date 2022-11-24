@@ -20,7 +20,7 @@
 		Foto: <img style="height: 80px" src="../subidas/u${usuario.id}.jpg"/> <br>
 		<%// con el $ en realidad sacamos del request la información que queramos %>
 		ID: ${usuario.id} | Nombre: ${usuario.nombre} | Apellido: ${usuario.apellido} | Teléfono: ${usuario.tel} | Ciudad: ${usuario.ciudad} | CP: ${usuario.cp}
-		<a onclick="return confirm('¿Estás seguro que desa borrar el usuario ${usuario.nombre} con id ${usuario.id}?');" href="borrarUsuario?idUsuario=${usuario.id}"> Borrar</a>
+		<a onclick="return confirm('¿Estás seguro que desa borrar el usuario ${usuario.nombre} con id ${usuario.id}?, Todos los pedidos del usuario serán eliminados');" href="borrarUsuario?idUsuario=${usuario.id}"> Borrar</a>
 		 | 
 		<a href="editarUsuario?idUsuario=${usuario.id}"> Editar</a>
 		
