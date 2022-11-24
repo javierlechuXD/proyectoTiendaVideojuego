@@ -68,7 +68,7 @@ public class ServicioVideojuegosImpl implements ServicioVideojuegos {
 	public void borrarVideojuego(int id) {
 		Videojuego v = (Videojuego)sessionFactory.getCurrentSession().get(Videojuego.class, id);
 		v.setAlta(false);
-		sessionFactory.getCurrentSession().delete(v);
+		sessionFactory.getCurrentSession().update(v);
 		//sessionFactory.getCurrentSession().delete(l);
 		
 	}
