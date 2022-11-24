@@ -95,7 +95,7 @@ public class Videojuego {
 	
 
 	public Videojuego(String nombre, String descri, int edadmin, double precio, String desarrollador, int notaCritica,
-			Categoria categoria) {
+			Categoria categoria, boolean alta) {
 		super();
 		this.nombre = nombre;
 		this.descri = descri;
@@ -104,6 +104,7 @@ public class Videojuego {
 		this.desarrollador = desarrollador;
 		this.notaCritica = notaCritica;
 		this.categoria = categoria;
+		this.alta = alta;
 	}
 
 	public int getId() {

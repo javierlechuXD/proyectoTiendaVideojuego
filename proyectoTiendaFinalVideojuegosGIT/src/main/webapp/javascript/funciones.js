@@ -1,16 +1,75 @@
 function mostrar_productos(){
-$.get("ServicioWebVideojuegos/obtenerVideojuegos", function(res){
-			var videojuegos = JSON.parse(res);
-			var resultado = Mustache.render(plantillas.videojuegos, videojuegos);
-			$("#contenedor").html(resultado);
-			$(".enlace_detalles").click(function(e){
-				var id = $(this).attr("id_producto");
-				alert("mostrar detalles del libro de id: " + id + "\n" + "pedir servicio Web datos videojuego con ID");
-			});
-			$(".enlace_comprar").click(comprar_producto);
-		});
+	$("#contenedor").html(plantillas.videojuegos);
+	comienzo = 0;
+	nombre_buscar = "";
+	$("#buscador_titulo").keyup(
+		function(){
+			nombre_buscar = this.value;
+			refresca_listado();
+		}
+	);
+	$("#enlace_anterior").click(
+		function(){
+			comienzo -= 10
+			refresca_listado();
+		}
+	);//end click enlace anterior
+	$("#enlace_siguiente").click(
+		function(){
+			comienzo += 10; 
+			refresca_listado();
+		}	
+	);	
+	refresca_listado();
 }
 
+function refresca_listado(){
+
+	if( comienzo <= 0 ){
+		$("#enlace_anterior").hide();
+	}else{
+		$("#enlace_anterior").show();
+	}
+
+	$.ajaxSetup({
+		scriptCharset: "utf-8",
+		contentType: "application/json; charset=utf-8",
+		scriptCharset: 'UTF-8'
+	});
+
+	$.getJSON("ServicioWebVideojuegos/obtenerVideojuegos",{
+		nombre: nombre_buscar,
+		comienzo: comienzo
+	}).done( 
+		function(res){
+			let videojuegos = res.videojuegos;
+			console.log(videojuegos)
+			let total_videojuegos = res.total;
+
+			if( comienzo + 10 > total_videojuegos ){
+				$("#enlace_siguiente").hide();
+			}else{
+				$("#enlace_siguiente").show();
+			}
+			$("#productos_listado").html(Mustache.render(plantillas.productos_listado,videojuegos));
+			$("#total_videojuegos").html(total_videojuegos);
+			$(".enlace_detalles").click(mostrar_detalles);//end click detales
+			$(".enlace_comprar").click(comprar_producto);
+		}
+	);//end get obtenerLibros
+}//end refresca_listado
+
+function mostrar_detalles(){
+	//this -> es el elemento sobre el que se hizo click en este caso
+	//$(this) es obtener el mismo elemento en forma de jquery
+	let id = $(this).attr("id_producto");
+	alert("mostrar detalles del libro de id: " + id + "\n" + 
+	"pedir a un servicio web todos los datos del libro dandole diche id" +
+	"y mostrarlos en una nueva plantilla, junto con sus dos imagenes " + "\n" +
+    "en dicha plantilla debera estar el enlace 'comprar producto' ");
+	//ahora lo suyo es llamar a obter libro por id y mostrar
+	//en una plantilal el resultado obtenido
+}
 
 function mostrar_productos_carrito(){
 

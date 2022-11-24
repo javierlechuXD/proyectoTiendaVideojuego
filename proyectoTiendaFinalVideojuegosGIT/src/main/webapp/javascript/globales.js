@@ -7,3 +7,6 @@
 var nombre_login = "";//nombre del usuario identificado
 
 var idioma_actual = "";
+
+var nombre_buscar = "";//titulo del buscador
+var comienzo = 0;//comienzo de los resultados

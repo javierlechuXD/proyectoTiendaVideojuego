@@ -1,10 +1,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,10 +15,10 @@ Introduce datos videojuego:
 Nombre: <springform:input path="nombre"/> 
 	<span style="color: red"><springform:errors path="nombre"/></span><br>
 	
-Descripción: <springform:input path="descri"/>  
+DescripciÃ³n: <springform:input path="descri"/>  
 	<span style="color: red"><springform:errors path="descri"/></span><br>
 	
-Edad Mínima: <springform:input path="edadmin"/>  
+Edad MÃ­nima: <springform:input path="edadmin"/>  
 	<span style="color: red"><springform:errors path="edadmin"/></span><br>
 	
 Precio: <springform:input path="precio"/>  
@@ -27,10 +27,10 @@ Precio: <springform:input path="precio"/>
 Desarrollador: <springform:input path="desarrollador"/>  
 	<span style="color: red"><springform:errors path="desarrollador"/></span><br>
 	
-Nota Crítica: <springform:input path="notaCritica"/>  
+Nota CrÃ­tica: <springform:input path="notaCritica"/>  
 	<span style="color: red"><springform:errors path="notaCritica"/></span><br>
 	
-Categoría: <springform:select path="idCategoria">
+CategorÃ­a: <springform:select path="idCategoria">
 				<springform:options items="${categorias}"></springform:options>
 			</springform:select><br>
 			

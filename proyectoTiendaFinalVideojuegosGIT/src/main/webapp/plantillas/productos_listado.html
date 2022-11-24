@@ -1,0 +1,19 @@
+<div style="margin:10px">
+	total resultados: <span id="total_videojuegos"></span>
+</div>
+    {{#.}}
+        <div>
+        <object style="height: 160px;" src="subidas/{{id}}.jpg?token={{fechaImagenPortada1}}"> <img style="height: 160px" src="subidas/videojuego.jpg"/></object>
+        <object style="height: 160px;" src="subidas/{{id}}-2.jpg?token={{fechaImagenPortada2}}"><img style="height: 160px" src="subidas/videojuego.jpg"/></object> <br>
+            Título: {{nombre}} <br>
+            Descripción: {{descri}} <br>
+            Edad Mínima: {{edadmin}} <br>
+            Precio: {{precio}} <br>
+            Desarrollador: {{desarrollador}} <br>
+            Nota Crítica: {{notaCritica}} <br>
+            <a href="#" id_producto="{{id}}" class="enlace_detalles" >ver detalles</a><br>
+            <input type="number" id="input-cantidad-{{id}}" value="1"/>
+            <a href="#" id_producto="{{id}}" class="enlace_comprar" >comprar videojuego</a>
+            <hr>
+        </div>
+    {{/.}}

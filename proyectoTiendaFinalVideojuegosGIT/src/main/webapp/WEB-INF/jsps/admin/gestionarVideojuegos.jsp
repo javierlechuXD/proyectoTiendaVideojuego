@@ -38,8 +38,8 @@
 	<div>
 		<%// con el $ en realidad sacamos del request la información que queramos %>
 		Portadas: <br>
-		<img style="height: 160px" src="../subidas/${videojuego.id}.jpg?token=${videojuego.fechaImagenPortada1}"/>
-		<img style="height: 160px" src="../subidas/${videojuego.id}-2.jpg?token=${videojuego.fechaImagenPortada2}"/>
+		<object  style="height: 160px" src="../subidas/${videojuego.id}.jpg?token=${videojuego.fechaImagenPortada1}"><img style="height: 160px" src="../subidas/videojuego.jpg"/></object>
+		<object  style="height: 160px" src="../subidas/${videojuego.id}-2.jpg?token=${videojuego.fechaImagenPortada2}"><img style="height: 160px" src="../subidas/videojuego.jpg"/></object>
 		<br>
 		Videojuego: ${videojuego.nombre} | Descripción: ${videojuego.descri} | Edad Mínima: +${videojuego.edadmin} años | Categoría: ${videojuego.categoria.nombre} | Precio: ${videojuego.precio}€ | Desarrollador: ${videojuego.desarrollador} | Nota Crítica: ${videojuego.notaCritica}
 		<a onclick="return confirm('¿Estás seguro que desa borrar el videojuego ${videojuego.nombre} con id ${videojuego.id}?');" href="borrarVideojuego?idVideojuego=${videojuego.id}"> Borrar</a>

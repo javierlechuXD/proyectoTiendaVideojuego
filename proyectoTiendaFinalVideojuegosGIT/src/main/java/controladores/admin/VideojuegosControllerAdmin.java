@@ -77,6 +77,7 @@ public class VideojuegosControllerAdmin {
 	
 	@RequestMapping("guardarNuevoVideojuegoAdmin")
 	public String guardarNuevoVideojuegoAdmin(@ModelAttribute("videojuego") @Valid Videojuego videojuego, BindingResult br, Model model, HttpServletRequest request) {
+		System.out.println(videojuego.getNombre());
 		if(! br.hasErrors()) {
 			if (videojuego.getPortada().getSize() != 0) {
 				videojuego.setFechaImagenPortada1(new Date());
@@ -87,7 +88,9 @@ public class VideojuegosControllerAdmin {
 			String nombrePortada = videojuego.getPortada().getOriginalFilename();
 			String nombrePortada2 = videojuego.getPortada().getOriginalFilename();
 			if (nombrePortada.endsWith(".jpg") && nombrePortada2.endsWith(".jpg")) {
-				servicioVideojuegos.registrarVideojuego(videojuego);	
+				videojuego.setAlta(true);
+				servicioVideojuegos.registrarVideojuego(videojuego);
+				System.out.println("Videojuego registrado correctamente;");
 				try {
 					String rutaRealDelProyecto = request.getServletContext().getRealPath("");
 					GestorArchivos.guardarPortadaVideojuego(videojuego, rutaRealDelProyecto);

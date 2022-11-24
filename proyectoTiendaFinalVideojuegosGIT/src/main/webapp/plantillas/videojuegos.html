@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
+Listado de Videojuegos:<br>
 
-<div style="text-align: center;margin: 10%">
-
-<meta charset="UTF-8">
-Listado de Videojuegos
-
-{{#.}}
-	<div>
-	<img style="height: 160px;" src="subidas/{{id}}.jpg?token={fechaImagenPortada1}"/>
-	<img style="height: 160px;" src="subidas/{{id}}-2.jpg?token={fechaImagenPortada2}"/> <br>
-		Título: {{nombre}} <br>
-		Descripción: {{descri}} <br>
-		Edad Mínima: {{edadmin}} <br>
-		Precio: {{precio}} <br>
-		Desarrollador: {{desarrollador}} <br>
-		Nota Crítica: {{notaCritica}} <br>
-		<a href="#" id_producto="{{id}}" class="enlace_detalles" >ver detalles</a><br>
-		<input type="number" id="input-cantidad-{{id}}" value="1"/>
-		<a href="#" id_producto="{{id}}" class="enlace_comprar" >comprar videojuego</a>
-		<hr>
-	</div>
-{{/.}}
+<div style="margin: 10px;">
+	buscador:<br> 
+	titulo: <input id="buscador_titulo" type="text" /> 
 </div>
+
+<div>
+
+	<a href="#" id="enlace_anterior" >anterior</a> &nbsp;
+
+	<a href="#" style="position: absolute;left: 200px" id="enlace_siguiente" >siguiente</a>
+
+</div>
+
+<div id="productos_listado">
+</div>
+
 
 </body>
 </html>
