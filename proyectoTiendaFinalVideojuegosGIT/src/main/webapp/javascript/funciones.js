@@ -31,17 +31,12 @@ function refresca_listado(){
 		$("#enlace_anterior").show();
 	}
 
-	$.ajaxSetup({
-		scriptCharset: "utf-8",
-		contentType: "application/json; charset=utf-8",
-		scriptCharset: 'UTF-8'
-	});
-
-	$.getJSON("ServicioWebVideojuegos/obtenerVideojuegos",{
+	$.get("ServicioWebVideojuegos/obtenerVideojuegos",{
 		nombre: nombre_buscar,
 		comienzo: comienzo
 	}).done( 
 		function(res){
+			res = JSON.parse(res);
 			let videojuegos = res.videojuegos;
 			console.log(videojuegos)
 			let total_videojuegos = res.total;
